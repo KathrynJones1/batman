@@ -556,8 +556,8 @@ void calc_limb_darkening(double* f_array, double* d_array, int N, double rprs, d
 					A_f = A_f + A_f2;
 					
 				}
-				double I = intensity(x - dx/2., intensity_args); 	//intensity at the midpoint
-				delta += (A_f - A_i)*I;				//increase in transit depth for this integration step
+				double I_temp = intensity(x - dx/2., intensity_args); 	//intensity at the midpoint
+				delta += (A_f - A_i)*I_temp;				//increase in transit depth for this integration step
 				dx = fac*acos(x);  				//updating step size
 				x = x + dx;					//stepping to next element
 				A_i = A_f;					//storing area
@@ -571,8 +571,8 @@ void calc_limb_darkening(double* f_array, double* d_array, int N, double rprs, d
 				A_f = A_f + A_f2;
 			}
 			
-			double I = intensity(x - dx/2., intensity_args); 		//intensity at the midpoint
-			delta += (A_f - A_i)*I;					//increase in transit depth for this integration step
+			double I_temp = intensity(x - dx/2., intensity_args); 		//intensity at the midpoint
+			delta += (A_f - A_i)*I_temp;					//increase in transit depth for this integration step
 			f_array[i] = 1.0 - delta;	//flux equals 1 - \int I dA
 		}
 	}
